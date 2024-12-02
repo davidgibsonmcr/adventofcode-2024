@@ -20,6 +20,7 @@ func GenerateLists(filePath string) ([]int, []int) {
 	reader := bufio.NewScanner(file)
 	for reader.Scan() {
 		line := reader.Text()
+        // could also use strings.Fields here to split based on spaces
 		string1 := line[0:5]
 		string2 := line[8:13]
 
@@ -43,6 +44,7 @@ func GenerateLists(filePath string) ([]int, []int) {
 	})
 	return list1, list2
 }
+
 func SimilarityScore(filePath string) int {
 
 	list1, list2 := GenerateLists(filePath)
@@ -60,6 +62,7 @@ func SimilarityScore(filePath string) int {
 func CalculateDistance(filePath string) int {
 	list1, list2 := GenerateLists(filePath)
 	distance := 0
+    //no stdlib abs function???
 	for i := 0; i < len(list1); i++ {
 		if list1[i] > list2[i] {
 			distance += list1[i] - list2[i]
